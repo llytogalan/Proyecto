@@ -1,0 +1,122 @@
+*{
+    margin:0px;
+    padding: 0px;
+    box-sizing:border-box;
+    font-family: Arial;
+    font-size: 16px;
+}
+
+h1{
+    font-size: 24px;
+}
+
+#tituloFormulario {
+    margin-bottom: 20px;
+}
+
+#botonesInicioSesion {
+    display: block;
+    float: right;
+    margin-right:45px;
+    line-height: 100px;
+}
+
+#botonesInicioSesion button:hover {
+    color: red;
+}
+
+
+#botonesInicioSesion button {
+    text-decoration:none;
+    font-weight:300;
+    font-size:14px;
+    color:#000000;
+    padding-top:20px;
+    padding-bottom:20px;
+    padding-left:40px;
+    padding-right:40px;
+    background-color:#D2D9D7;
+    border-color: #000000;
+    border-radius: 6px;
+}
+
+#header{
+    width: 100%;
+    height: 100px;
+    background-color: black;
+    clear: both;
+}
+
+#header img {
+    width: 125px;
+    height: 100px;
+    margin-top: 5px;
+}
+
+#logocontenido {
+    width: 400;
+    height: 300;
+}
+
+#main{
+    margin-top: 75px;
+    text-align: center;
+}
+
+form{
+    width:350px;
+    padding:16px;
+    border-radius:10px;
+    margin:auto;
+    background-color:#ccc;
+}
+
+form label{
+    width:92px;
+    font-weight:bold;
+    display:inline-block;
+    font-size: 14px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form select{
+    width:180px;
+    padding:3px 10px;
+    border:1px solid #f6f6f6;
+    border-radius:3px;
+    background-color:#f6f6f6;
+    margin:8px 0;
+    display:inline-block;
+    font-size: 14px;
+}
+
+form input[type="submit"],
+form input[type="reset"]{
+    width:100%;
+    padding:8px 16px;
+    margin-top:10px;
+    border:1px solid #000;
+    border-radius:5px;
+    display:block;
+    color:#fff;
+    background-color:#000;
+    font-size: 14px;
+} 
+
+form input[type="submit"]:hover{
+    cursor:pointer;
+}
+
+textarea{
+    width:100%;
+    height:100px;
+    border:1px solid #f6f6f6;
+    border-radius:3px;
+    background-color:#f6f6f6;           
+    margin:8px 0;
+    resize:none;
+    display:block;
+}
+

@@ -1,0 +1,272 @@
+*{
+    margin:0px;
+    padding: 0px;
+    box-sizing:border-box;
+    font-family: Arial;
+    font-size: 16px;
+}
+
+#botonesInicioSesion {
+    display: block;
+    float: right;
+    border-color: solid #000000;
+    margin-right:45px;
+    line-height: 100px;
+}
+
+#botonesInicioSesion input[type="submit"]:hover {
+    color: red;
+}
+
+#botonesInicioSesion input[type="submit"] {
+	text-decoration:none;
+    font-weight:300;
+    font-size:14px;
+    color:#000000;
+    padding-top:20px;
+    padding-bottom:20px;
+    padding-left:40px;
+    padding-right:40px;
+    background-color:#D2D9D7;
+    border-color: #000000;
+    border-radius: 6px;
+}
+
+#header{
+    width: 100%;
+    height: 100px;
+    background-color: #000000;
+    clear: both;
+}
+
+#header img {
+    width: 125px;
+    height: 100px;
+    margin-top: 5px;
+}
+
+#logocontenido {
+    width: 400;
+    height: 300;
+}
+
+
+#contenido{
+    text-align: center;
+}
+
+h1{
+    margin-top: 40px;
+    font-size: 22px;
+}
+
+#contenido2 {
+    width: 100%;
+    height: 500px;
+    background-color: white;
+    display: flex;
+    align-items:
+    center;margin-top: -70px;
+}
+
+#contenido2 div{
+    width: 19%;
+    height: 300px;
+    margin: 0 auto;
+    background-color: #D2D9D7;
+    border-style: solid;
+    border-radius: 6px;
+}
+
+h2{
+    margin : 25px;
+}
+
+p{
+    margin: 15px;
+    margin-top: -10px;
+    margin-bottom: 25px;
+}
+
+button {
+    text-decoration: none;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #000000;
+    border-radius: 6px;
+    border: 2px solid #000000;
+}
+
+button:hover {
+    color: #000000;
+    background-color: #E84B28;
+}
+
+
+#formulario{
+    width:350px;
+    padding:16px;
+    border-radius:10px;
+    margin:auto;
+    margin-top: 20px;
+    background-color:#ccc;
+}
+
+#formulario label{
+    width:92px;
+    font-weight:bold;
+    display:inline-block;
+    font-size: 14px;
+}
+
+#formulario input[type="text"],
+#formulario input[type="email"],
+#formulario input[type="password"],
+#formulario input[type="date"],
+#formulario select{
+    width:180px;
+    padding:3px 10px;
+    border:1px solid #f6f6f6;
+    border-radius:3px;
+    background-color:#f6f6f6;
+    margin:8px 0;
+    display:inline-block;
+    font-size: 14px;
+}
+
+#formulario input[type="submit"],
+#formulario input[type="reset"]{
+    width:100%;
+    padding:8px 16px;
+    margin-top:10px;
+    border:1px solid #000;
+    border-radius:5px;
+    display:block;
+    color:#fff;
+    background-color:#000;
+    font-size: 14px;
+} 
+
+a{
+    text-decoration:none;
+}
+
+#formulario input[type="submit"]:hover,
+#formulario input[type="button"]:hover{
+    color: #000000;
+    background-color: #E84B28; 
+}
+
+#formulario textarea{
+    width:100%;
+    height:100px;
+    border:1px solid #f6f6f6;
+    border-radius:3px;
+    background-color:#f6f6f6;           
+    margin:8px 0;
+    resize:none;
+    display:block;
+}
+
+#formulario2{
+    width:350px;
+    padding:16px;
+    border-radius:10px;
+    margin:auto;
+    margin-top: -15px;
+    background-color:#ccc;
+}
+
+#formulario2 input[type="button"],
+#formulario2 input[type="submit"]
+{
+    width:100%;
+    padding:8px 16px;
+    margin-top:10px;
+    border:1px solid #000;
+    border-radius:5px;
+    display:block;
+    color:#fff;
+    background-color:#000;
+    font-size: 14px;
+}
+
+#formulario2 input[type="submit"]:hover,
+#formulario2 input[type="button"]:hover{
+    color: #000000;
+    background-color: #E84B28; 
+}
+
+#botonvolver{
+    margin-top: 30px;
+}
+
+
+#tablabusquedas {
+    border: solid;
+    margin : 0 auto;
+    text-align: center; 
+    margin-top: 30px;
+    width: 20%;
+    border-collapse: collapse;
+}
+
+#tablabusquedas tr,
+#tablabusquedas td{
+    padding: 20px;
+}
+
+#tablabusquedas tr:nth-child(even){
+    background-color:#ccc;
+}
+
+#tablaresultado {
+    border: solid;
+    margin : 0 auto;
+    text-align: center; 
+    margin-top: 30px;
+    width: 80%;
+    border-collapse: collapse;
+}
+
+#tablaresultado th {
+    padding: 20px;
+    background-color:#000;
+    color: white; 
+}
+
+#tablaresultado tr,
+#tablaresultado td{
+    padding: 20px;
+}
+
+#tablaresultado tr:nth-child(even){
+    background-color:#ccc;
+}
+
+
+#tablaestadisticas {
+    border: solid;
+    margin : 0 auto;
+    text-align: center; 
+    margin-top: 30px;
+    width: 60%;
+    border-collapse: collapse;
+}
+
+#tablaestadisticas th {
+    padding: 20px;
+    background-color:#000;
+    color: white; 
+}
+
+#tablaestadisticas tr,
+#tablaestadisticas td{
+    padding: 20px;
+}
+
+#tablaestadisticas tr:nth-child(even){
+    background-color:#ccc;
+}
