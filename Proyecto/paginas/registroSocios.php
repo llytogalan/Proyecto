@@ -61,30 +61,7 @@
 				?>
 					<!-- Contenido Pagina cuando modifique socios -->
 					<h1><?php echo $socio->modificarSocio()."<br>"; ?></h1>
-					<a href="./registroSocios.php"><button id="botonvolver">Volver a formulario</button></a>
-
-				<?php
-
-				}elseif (isset($_POST['buscarSocio'])) {
-
-					$nombre=(isset($_POST['nombre']))?$_POST['nombre']:" ";
-					$dni=(isset($_POST['dni']))?$_POST['dni']:" ";
-					$cuota=(isset($_POST['cuota']))?$_POST['cuota']:" ";
-					$fk_equipo=(isset($_SESSION['idEquipo']))?$_SESSION['idEquipo']:" ";
-
-					$socio = new Socio($nombre, $dni, $cuota);
-					$socio->setFK_idEquipo($fk_equipo);
-
-					echo $socio->buscarSocio();
-					
-				?>
-					<!-- Contenido Pagina cuando busque socios -->
-					<h1>Busqueda de Socios de <?php echo $_SESSION['nombre'] ?></h1>
 					<table id="tablabusquedas" >
-						<tr>
-							<th>IdSocio:</th>
-							<td><?php echo $socio->getIdSocio(); ?></td>
-						</tr>
 						<tr>
 							<th>Nombre:</th>
 							<td><?php echo $socio->getNombre(); ?></td>
@@ -97,9 +74,44 @@
 							<th>Cuota:</th>
 							<td><?php echo $socio->getCuota(); ?></td>
 						</tr>
+					</table>
+
+					<a href="./registroSocios.php"><button id="botonvolver">Volver a formulario</button></a>
+
+				<?php
+
+				}elseif (isset($_POST['buscarSocio'])) {
+
+					$nombre=(isset($_POST['nombre']))?$_POST['nombre']:" ";
+					$dni=(isset($_POST['dni']))?$_POST['dni']:" ";
+					$cuota=(isset($_POST['cuota']))?$_POST['cuota']:" ";
+					$fk_equipo=(isset($_SESSION['idEquipo']))?$_SESSION['idEquipo']:" ";
+
+					$fila=Socio::buscarSocio($dni,$fk_equipo);
+					
+				?>
+					<!-- Contenido Pagina cuando busque socios -->
+					<h1>Busqueda de Socios de <?php echo $_SESSION['nombre'] ?></h1>
+					<table id="tablabusquedas" >
 						<tr>
-							<th>Dorsal:</th>
-							<td><?php echo $socio->getFechaAlt(); ?></td>
+							<th>IdSocio:</th>
+							<td><?php echo $fila['PK_IdSocio']; ?></td>
+						</tr>
+						<tr>
+							<th>Nombre:</th>
+							<td><?php echo $fila['Nombre']; ?></td>
+						</tr>
+						<tr>
+							<th>Dni:</th>
+							<td><?php echo $fila['Dni'] ?></td>
+						</tr>
+						<tr>
+							<th>Cuota:</th>
+							<td><?php echo $fila['Cuota'] ?></td>
+						</tr>
+						<tr>
+							<th>Fecha Alta:</th>
+							<td><?php echo $fila['FechaAlt']; ?></td>
 						</tr>
 					</table>
 

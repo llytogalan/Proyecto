@@ -11,6 +11,7 @@
 		private $funcion;
 		private $fechaAlt;
 		private $FK_idEquipo;
+		const TABLA = 'personal';
 
 		public function __construct($nombre, $dni, $sueldo, $funcion, $FK_idEquipo){
 			$this->nombre = $nombre;
@@ -80,7 +81,7 @@
 		public function anadirPersonal(){
 			$model = new Conexion();
   			$conexion = $model->conectar();
-			$sql = "INSERT INTO personal(Nombre, Dni, Sueldo, Funcion, FK_IdEquipo) VALUES (:nombre, :dni, :sueldo, :funcion, :fkIdEquipo);";
+			$sql = 'INSERT INTO '.self::TABLA.'(Nombre, Dni, Sueldo, Funcion, FK_IdEquipo) VALUES (:nombre, :dni, :sueldo, :funcion, :fkIdEquipo);';
 
 			$nombre = $this->getNombre();
 			$dni = $this->getDni();
@@ -109,7 +110,7 @@
 
 			$model = new Conexion();
   			$conexion = $model->conectar();
-			$sql = "UPDATE personal set Nombre = :nombre, Sueldo = :sueldo, Funcion = :funcion WHERE Dni = :dni AND FK_idEquipo = :fkIdEquipo";
+			$sql = 'UPDATE '.self::TABLA.' set Nombre = :nombre, Sueldo = :sueldo, Funcion = :funcion WHERE Dni = :dni AND FK_idEquipo = :fkIdEquipo';
 
 			$nombre = $this->getNombre();
 			$dni = $this->getDni();
@@ -134,18 +135,15 @@
 		}
 
 
-		public function buscarPersonal(){
+		public static function buscarPersonal($dni, $FK_IdEquipo){
 
 			$model = new Conexion();
   			$conexion = $model->conectar();
-			$sql = "SELECT * FROM personal WHERE Dni = :dni AND FK_idEquipo = :FK_idEquipo";
-
-			$dni = $this->getDni();
-			$fkIdEquipo = $this->getFK_idEquipo();
+			$sql = 'SELECT * FROM '.self::TABLA.' WHERE Dni = :dni AND FK_idEquipo = :FK_idEquipo';
 
 			$resultado=$conexion->prepare($sql);
 			$resultado->bindParam(":dni", $dni);
-			$resultado->bindParam(":FK_idEquipo", $fkIdEquipo );
+			$resultado->bindParam(":FK_idEquipo", $FK_IdEquipo );
 
 			$resultado->execute();
 			$total=$resultado->rowCount();
@@ -155,16 +153,9 @@
 			} else {
 				
 				$fila = $resultado->fetch();
-				$this->setIdPersonal($fila['PK_IdPersonal']);
-				$this->setNombre($fila['Nombre']);
-				$this->setDni($fila['Dni']);
-				$this->setSueldo($fila['Sueldo']);
-				$this->setFuncion($fila['Funcion']);
-				$this->setFechaAlt($fila['FechaAlt']);
-				$this->setFK_idEquipo($fila['FK_IdEquipo']);
+				return $fila;
 			}
 		}
+}
 
-
-	}
 ?>

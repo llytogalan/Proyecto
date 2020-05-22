@@ -10,6 +10,7 @@ require ('../crud/Conexion.php');
 		private $cuota;
 		private $fechaAlt;
 		private $FK_idEquipo;
+		const TABLA = 'socio';
 
 		public function __construct($nombre, $dni, $cuota){
 			$this->nombre = $nombre;
@@ -70,7 +71,7 @@ require ('../crud/Conexion.php');
 		public function anadirSocio(){
 			$model = new Conexion();
   			$conexion = $model->conectar();
-			$sql = "INSERT INTO socio(Nombre, Dni, Cuota, FK_IdEquipo) VALUES (:nombre, :dni, :cuota, :fkIdEquipo);";
+			$sql = 'INSERT INTO '.self::TABLA.'(Nombre, Dni, Cuota, FK_IdEquipo) VALUES (:nombre, :dni, :cuota, :fkIdEquipo);';
 
 			$nombre = $this->getNombre();
 			$dni = $this->getDni();
@@ -97,7 +98,7 @@ require ('../crud/Conexion.php');
 
 			$model = new Conexion();
   			$conexion = $model->conectar();
-			$sql = "UPDATE socio set Nombre = :nombre, Cuota = :cuota WHERE Dni = :dni AND FK_idEquipo = :fkIdEquipo";
+			$sql = 'UPDATE '.self::TABLA.' set Nombre = :nombre, Cuota = :cuota WHERE Dni = :dni AND FK_idEquipo = :fkIdEquipo';
 
 			$nombre = $this->getNombre();
 			$dni = $this->getDni();
@@ -120,18 +121,15 @@ require ('../crud/Conexion.php');
 		}
 
 
-		public function buscarSocio(){
+		public static function buscarSocio($dni,$FK_IdEquipo){
 
 			$model = new Conexion();
   			$conexion = $model->conectar();
-			$sql = "SELECT * FROM socio WHERE Dni = :dni AND FK_idEquipo = :FK_idEquipo";
-
-			$dni = $this->getDni();
-			$fkIdEquipo = $this->getFK_idEquipo();
+			$sql = 'SELECT * FROM '.self::TABLA.' WHERE Dni = :dni AND FK_idEquipo = :FK_idEquipo';
 
 			$resultado=$conexion->prepare($sql);
 			$resultado->bindParam(":dni", $dni);
-			$resultado->bindParam(":FK_idEquipo", $fkIdEquipo );
+			$resultado->bindParam(":FK_idEquipo", $FK_IdEquipo );
 
 			$resultado->execute();
 			$total=$resultado->rowCount();
@@ -141,12 +139,7 @@ require ('../crud/Conexion.php');
 			} else {
 				
 				$fila = $resultado->fetch();
-				$this->setIdSocio($fila['PK_IdSocio']);
-				$this->setNombre($fila['Nombre']);
-				$this->setDni($fila['Dni']);
-				$this->setCuota($fila['Cuota']);
-				$this->setFechaAlt($fila['FechaAlt']);
-				$this->setFK_idEquipo($fila['FK_IdEquipo']);
+				return $fila;
 			}
 		}
 

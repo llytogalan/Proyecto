@@ -3,12 +3,14 @@
 require('../Crud/Conexion.php');
 
 	class Equipo{
+
 		private $idEquipo;
 		private $nombre;
 		private $password;
 		private $localidad;
 		private $division;
 		private $grupo;
+		const TABLA = 'equipo';
 
 		public function __construct(){
     	}
@@ -65,7 +67,7 @@ require('../Crud/Conexion.php');
 
 			$model = new Conexion();
   			$conexion = $model->conectar();
-			$sql = "INSERT INTO equipo (Nombre, Contrasenia, Localidad, Division, Grupo) VALUES (:nombre, :contrasenia, :localidad, :division, :grupo)";
+			$sql = 'INSERT INTO '.self::TABLA.' (Nombre, Contrasenia, Localidad, Division, Grupo) VALUES (:nombre, :contrasenia, :localidad, :division, :grupo)';
 
 			$nombre = $this->getNombre();
 			$password = $this->getPassword();
@@ -93,7 +95,7 @@ require('../Crud/Conexion.php');
 			$model = new Conexion();
   			$conexion = $model->conectar();
 
-  			$sql = "SELECT PK_IdEquipo FROM equipo WHERE Nombre= :nombre AND Contrasenia= :contrasenia AND Localidad= :localidad AND Division= :division AND Grupo= :grupo";
+  			$sql = 'SELECT PK_IdEquipo FROM '.self::TABLA.' WHERE Nombre= :nombre AND Contrasenia= :contrasenia AND Localidad= :localidad AND Division= :division AND Grupo= :grupo';
 
   			$nombre = $this->getNombre();
 			$password = $this->getPassword();
@@ -129,7 +131,7 @@ require('../Crud/Conexion.php');
 			$idEquipo = $this->getIdEquipo();
 			$password = $this->getPassword();
 
-  			$sql = "SELECT * FROM equipo WHERE PK_IdEquipo= :PK_IdEquipo AND Contrasenia= :contrasenia";
+  			$sql = 'SELECT * FROM '.self::TABLA.' WHERE PK_IdEquipo= :PK_IdEquipo AND Contrasenia= :contrasenia';
 
 			$resultado=$conexion->prepare($sql);
 			$resultado->bindParam(":PK_IdEquipo",$idEquipo);

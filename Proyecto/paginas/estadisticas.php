@@ -41,36 +41,20 @@
 			                <th>Posicion</th>
 			                <th>Goles</th>
 			            </tr>
-			            <?php
-
-  							$model = new Conexion();
-  							$conexion = $model->conectar();
-
-			            	$sql='SELECT * FROM jugador ORDER BY Goles DESC LIMIT 5';
-			            	$resultado=$conexion->prepare($sql);
-			            	$resultado->execute();
-			            	$total= $resultado->rowCount();
-
-			            	if ($total == 0) {?>
-
-			            		<br><br><p><?php echo "No hay jugadores registrados";?></p>
-
-			            	<?php
-
-			            	} else {
-
-			            		while ($fila = $resultado->fetch()) {
-			            	
+			            <?php $obj = new Jugador();
+			            		$obj->mostrarGoles();
+			            		$filas = $obj->getRows();
+			            	foreach($filas as $jugador){?>
+			            	<tr>
+			                	<td><?php echo $jugador['Nombre']?></td>
+			                	<td><?php echo $jugador['Apodo'] ?></td>
+			                	<td><?php echo $jugador['Posicion']; ?></td>
+			                	<td><?php echo $jugador['Goles'];?></td>
+			            	</tr>
+			            <?php	
+			            	};
 			            ?>
-			             <tr>
-			                <td><?php echo $fila['Nombre'] ?></td>
-			                <td><?php echo $fila['Apodo'] ?></td>
-			                <td><?php echo $fila['Posicion'] ?></td>
-			                <td><?php echo $fila['Goles'] ?></td>
-			            </tr>
-
-			            <?php }
-			             } ?>
+			            
 			        </table>
 
 
@@ -82,36 +66,20 @@
 			                <th>Posicion</th>
 			                <th>Asistencias</th>
 			            </tr>
-			            <?php
-
-  							$model = new Conexion();
-  							$conexion = $model->conectar();
-
-			            	$sql='SELECT * FROM jugador ORDER BY Asistencias DESC LIMIT 5';
-			            	$resultado=$conexion->prepare($sql);
-			            	$resultado->execute();
-			            	$total= $resultado->rowCount();
-
-			            	if ($total == 0) {?>
-
-			            		<br><br><p><?php echo "No hay jugadores registrados";?></p>
-
-			            	<?php
-
-			            	} else {
-
-			            		while ($fila = $resultado->fetch()) {
-			            	
+			            <?php $obj = new Jugador();
+			            		$obj->mostrarAsistencias();
+			            		$filas = $obj->getRows();
+			            	foreach($filas as $jugador){?>
+			            	<tr>
+			                	<td><?php echo $jugador['Nombre']?></td>
+			                	<td><?php echo $jugador['Apodo'] ?></td>
+			                	<td><?php echo $jugador['Posicion']; ?></td>
+			                	<td><?php echo $jugador['Asistencias'];?></td>
+			            	</tr>
+			            <?php	
+			            	};
 			            ?>
-			             <tr>
-			                <td><?php echo $fila['Nombre'] ?></td>
-			                <td><?php echo $fila['Apodo'] ?></td>
-			                <td><?php echo $fila['Posicion'] ?></td>
-			                <td><?php echo $fila['Asistencias'] ?></td>
-			            </tr>
-
-			            <?php }
-			             } ?>
+			            
 			        </table>
 
 
@@ -123,36 +91,20 @@
 			                <th>Posicion</th>
 			                <th>Tarjetas</th>
 			            </tr>
-			            <?php
-
-  							$model = new Conexion();
-  							$conexion = $model->conectar();
-
-			            	$sql='SELECT * FROM jugador ORDER BY Tarjetas DESC LIMIT 5';
-			            	$resultado=$conexion->prepare($sql);
-			            	$resultado->execute();
-			            	$total= $resultado->rowCount();
-
-			            	if ($total == 0) {?>
-
-			            		<br><br><p><?php echo "No hay jugadores registrados";?></p>
-
-			            	<?php
-
-			            	} else {
-
-			            		while ($fila = $resultado->fetch()) {
-			            	
+			            <?php $obj = new Jugador();
+			            		$obj->mostrarTarjetas();
+			            		$filas = $obj->getRows();
+			            	foreach($filas as $jugador){?>
+			            	<tr>
+			                	<td><?php echo $jugador['Nombre']?></td>
+			                	<td><?php echo $jugador['Apodo'] ?></td>
+			                	<td><?php echo $jugador['Posicion']; ?></td>
+			                	<td><?php echo $jugador['Tarjetas'];?></td>
+			            	</tr>
+			            <?php	
+			            	};
 			            ?>
-			             <tr>
-			                <td><?php echo $fila['Nombre'] ?></td>
-			                <td><?php echo $fila['Apodo'] ?></td>
-			                <td><?php echo $fila['Posicion'] ?></td>
-			                <td><?php echo $fila['Tarjetas'] ?></td>
-			            </tr>
-
-			            <?php }
-			             } ?>
+			            
 			        </table>
 
 			        <a href="./home.php"><button id="botonvolver">Volver a Menu</button></a>

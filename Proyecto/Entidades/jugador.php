@@ -15,6 +15,8 @@
 		private $asistencias;
 		private $tarjetas;
 		private $FK_idEquipo;
+		private $rows;
+		const TABLA = 'jugador';
 
 		public function __construct(){
     	}
@@ -107,11 +109,19 @@
 			$this->FK_idEquipo = $FK_idEquipo;
 		}
 
+		public function getRows(){
+			return $this->rows;
+		}
+
+		public function setRows($rows){
+			$this->rows = $rows;
+		}
+
 
 		public function anadirJugador(){
 			$model = new Conexion();
   			$conexion = $model->conectar();
-			$sql = "INSERT INTO jugador(Nombre, Apodo, Dni, Posicion, Dorsal, FechaNac, Goles, Asistencias, Tarjetas, FK_IdEquipo) VALUES (:nombre, :apodo, :dni, :posicion, :dorsal, :fechaNac, :goles, :asistencias, :tarjetas, :fkIdEquipo);";
+			$sql = 'INSERT INTO '.self::TABLA.'(Nombre, Apodo, Dni, Posicion, Dorsal, FechaNac, Goles, Asistencias, Tarjetas, FK_IdEquipo) VALUES (:nombre, :apodo, :dni, :posicion, :dorsal, :fechaNac, :goles, :asistencias, :tarjetas, :fkIdEquipo);';
 
 			$nombre = $this->getNombre();
 			$apodo = $this->getApodo();
@@ -150,7 +160,7 @@
 
 			$model = new Conexion();
   			$conexion = $model->conectar();
-			$sql = "UPDATE jugador set Nombre = :nombre, Posicion = :posicion, Dorsal = :dorsal, FechaNac = :fechaNac, Goles = :goles, Asistencias = :asistencias, Tarjetas = :tarjetas WHERE Dni = :dni AND FK_idEquipo = :FK_idEquipo AND apodo = :apodo";
+			$sql = 'UPDATE '.self::TABLA.' set Nombre = :nombre, Posicion = :posicion, Dorsal = :dorsal, FechaNac = :fechaNac, Goles = :goles, Asistencias = :asistencias, Tarjetas = :tarjetas WHERE Dni = :dni AND FK_idEquipo = :FK_idEquipo AND apodo = :apodo';
 
 			$nombre = $this->getNombre();
 			$apodo = $this->getApodo();
@@ -188,7 +198,7 @@
 
 			$model = new Conexion();
   			$conexion = $model->conectar();
-			$sql = "SELECT * FROM jugador WHERE Dni = :dni AND FK_idEquipo = :FK_idEquipo AND Apodo = :apodo";
+			$sql = 'SELECT * FROM '.self::TABLA.' WHERE Dni = :dni AND FK_idEquipo = :FK_idEquipo AND Apodo = :apodo';
 
 			$apodo = $this->getApodo();
 			$dni = $this->getDni();
@@ -220,13 +230,64 @@
 		}
 
 
-		public function buscarGoleadores(){
-			$sql='SELECT * FROM jugador ORDER BY Goles DESC LIMIT 5';
+		public function mostrarGoles(){
+
+			$model = new Conexion();
+  			$conexion = $model->conectar();
+  			$sql='SELECT * FROM '.self::TABLA.' ORDER BY Goles DESC LIMIT 5';
+  			$consulta=$conexion->prepare($sql);
+  			$consulta->execute();
+  			
+  			while ( $filas = $consulta->fetch()){
+  				$this->rows[] = $filas;
+  			}
+
+		}
+
+		public function mostrarAsistencias(){
+
+			$model = new Conexion();
+  			$conexion = $model->conectar();
+  			$sql='SELECT * FROM '.self::TABLA.' ORDER BY Asistencias DESC LIMIT 5';
+  			$consulta=$conexion->prepare($sql);
+  			$consulta->execute();
+  			
+  			while ( $filas = $consulta->fetch()){
+  				$this->rows[] = $filas;
+  			}
 
 		}
 
 
-		
+		public function mostrarTarjetas(){
+
+			$model = new Conexion();
+  			$conexion = $model->conectar();
+  			$sql='SELECT * FROM '.self::TABLA.' ORDER BY Tarjetas DESC LIMIT 5';
+  			$consulta=$conexion->prepare($sql);
+  			$consulta->execute();
+  			
+  			while ( $filas = $consulta->fetch()){
+  				$this->rows[] = $filas;
+  			}
+
+		}
+
+		public function mostrarTodos($fk_IdEquipo){
+
+			$model = new Conexion();
+  			$conexion = $model->conectar();
+  			$sql='SELECT * FROM '.self::TABLA.' WHERE FK_IdEquipo = :fk_equipo';
+  			$consulta=$conexion->prepare($sql);
+  			$consulta->bindParam(":fk_equipo", $fk_IdEquipo );
+  			$consulta->execute();
+  			
+  			while ( $filas = $consulta->fetch()){
+  				$this->rows[] = $filas;
+  			}
+
+		}
+
 
 	}
 ?>

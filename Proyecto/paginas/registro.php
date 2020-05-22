@@ -86,6 +86,8 @@
 		<option>9</option>
 		<option>10</option>
 	</select>
+
+	<label><input type="checkbox" id="condiciones" value="condiciones" required >Aceptas nuestras politicas de privacidad</label><br>
 	
 	
 	<input type="submit" name="enviar" value="Enviar datos"/>

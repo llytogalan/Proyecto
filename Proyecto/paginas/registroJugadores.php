@@ -222,45 +222,27 @@
 			                <th>Asistencias</th>
 			                <th>Tarjetas</th>
 			            </tr>
-			            <?php
-
-  							$model = new Conexion();
-  							$conexion = $model->conectar();
-
-  							$fk_equipo=(isset($_SESSION['idEquipo']))?$_SESSION['idEquipo']:" ";
-
-			            	$sql="SELECT * FROM jugador WHERE FK_idEquipo = :FK_idEquipo;";
-			            	$resultado=$conexion->prepare($sql);
-			            	$resultado->bindParam(":FK_idEquipo", $fk_equipo );
-			            	$resultado->execute();
-			            	$total= $resultado->rowCount();
-
-			            	if ($total == 0) {?>
-
-			            		<br><br><p><?php echo "No hay jugadores registrados";?></p>
-
-			            	<?php
-
-			            	} else {
-
-			            		while ($fila = $resultado->fetch()) {
-			            	
+			            <?php $obj = new Jugador();
+			            		$fk_equipo=(isset($_SESSION['idEquipo']))?$_SESSION['idEquipo']:" ";
+			            		$obj->mostrarTodos($fk_equipo);
+			            		$filas = $obj->getRows();
+			            	foreach($filas as $jugador){?>
+			            	<tr>
+			                	<td><?php echo $jugador['PK_IdJugador']?></td>
+			                	<td><?php echo $jugador['Nombre'] ?></td>
+			                	<td><?php echo $jugador['Apodo']; ?></td>
+			                	<td><?php echo $jugador['Dni'];?></td>
+			                	<td><?php echo $jugador['Posicion'];?></td>
+			                	<td><?php echo $jugador['Dorsal'];?></td>
+			                	<td><?php echo $jugador['FechaNac'];?></td>
+			                	<td><?php echo $jugador['Goles'];?></td>
+			                	<td><?php echo $jugador['Asistencias'];?></td>
+			                	<td><?php echo $jugador['Tarjetas'];?></td>
+			            	</tr>
+			            <?php	
+			            	};
 			            ?>
-			             <tr>
-			                <td><?php echo $fila['PK_IdJugador'] ?></td>
-			                <td><?php echo $fila['Nombre'] ?></td>
-			                <td><?php echo $fila['Apodo'] ?></td>
-			                <td><?php echo $fila['Dni'] ?></td>
-			                <td><?php echo $fila['Posicion'] ?></td>
-			                <td><?php echo $fila['Dorsal'] ?></td>
-			                <td><?php echo $fila['FechaNac'] ?></td>
-			                <td><?php echo $fila['Goles'] ?></td>
-			                <td><?php echo $fila['Asistencias'] ?></td>
-			                <td><?php echo $fila['Tarjetas'] ?></td>
-			            </tr>
-
-			            <?php }
-			             } ?>
+			            
 			        </table>
 
 			        <a href="./registroJugadores.php"><button id="botonvolver">Volver a formulario</button></a>
@@ -293,14 +275,11 @@
 						<label for="dorsal">Dorsal</label>
 						<input type="text" name="dorsal" id="dorsal" placeholder="Escribe el Dorsal"  />
 
-						<label for="posicion">Posicion</label>
-						<select name="posicion">
-							<option default> </option>
-							<option>Portero</option>
-							<option>Defensa</option>
-							<option>Mediocentro</option>
-							<option>Delantero</option>
-						</select>
+						<label for="posicion">Posicion</label><br>
+						<input type="radio" id="posicion" name="posicion" value="Portero" ><label>Portero</label><br>
+						<input type="radio" id="posicion" name="posicion" value="Defensa" ><label>Defensa</label><br>
+						<input type="radio" id="posicion" name="posicion" value="Mediocentro" ><label>Medicentro</label><br>
+						<input type="radio" id="posicion" name="posicion" value="Delantero" ><label>Delantero</label><br>
 
 						<hr style="border-color:black;">
 

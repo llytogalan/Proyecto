@@ -61,30 +61,7 @@
 				?>
 					<!-- Contenido Pagina cuando modifique jugadores -->
 					<h1><?php echo $personal->modificarPersonal()."<br>"; ?></h1>
-					<a href="./registroPersonal.php"><button id="botonvolver">Volver a formulario</button></a>
-
-				<?php
-
-				}elseif (isset($_POST['buscarPersonal'])) {
-
-					$nombre=(isset($_POST['nombre']))?$_POST['nombre']:" ";
-					$dni=(isset($_POST['dni']))?$_POST['dni']:" ";
-					$sueldo=(isset($_POST['sueldo']))?$_POST['sueldo']:" ";
-					$funcion=(isset($_POST['funcion']))?$_POST['funcion']:" ";
-					$fk_equipo=(isset($_SESSION['idEquipo']))?$_SESSION['idEquipo']:" ";
-
-					$personal = new Personal($nombre, $dni, $sueldo, $funcion, $fk_equipo);
-
-					echo $personal->buscarPersonal();
-					
-				?>
-					<!-- Contenido Pagina cuando busque jugadores -->
-					<h1>Busqueda de Personal de <?php echo $_SESSION['nombre'] ?></h1>
 					<table id="tablabusquedas" >
-						<tr>
-							<th>IdPersonal:</th>
-							<td><?php echo $personal->getIdPersonal(); ?></td>
-						</tr>
 						<tr>
 							<th>Nombre:</th>
 							<td><?php echo $personal->getNombre(); ?></td>
@@ -101,9 +78,49 @@
 							<th>Funcion:</th>
 							<td><?php echo $personal->getFuncion(); ?></td>
 						</tr>
+					</table>
+
+					<a href="./registroPersonal.php"><button id="botonvolver">Volver a formulario</button></a>
+
+				<?php
+
+				}elseif (isset($_POST['buscarPersonal'])) {
+
+					$nombre=(isset($_POST['nombre']))?$_POST['nombre']:" ";
+					$dni=(isset($_POST['dni']))?$_POST['dni']:" ";
+					$sueldo=(isset($_POST['sueldo']))?$_POST['sueldo']:" ";
+					$funcion=(isset($_POST['funcion']))?$_POST['funcion']:" ";
+					$fk_equipo=(isset($_SESSION['idEquipo']))?$_SESSION['idEquipo']:" ";
+
+					$fila=Personal::buscarPersonal($dni,$fk_equipo);
+					
+				?>
+					<!-- Contenido Pagina cuando busque jugadores -->
+					<h1>Busqueda de Personal de <?php echo $_SESSION['nombre'] ?></h1>
+					<table id="tablabusquedas" >
+						<tr>
+							<th>IdPersonal:</th>
+							<td><?php echo $fila['PK_IdPersonal']; ?></td>
+						</tr>
+						<tr>
+							<th>Nombre:</th>
+							<td><?php echo $fila['Nombre']; ?></td>
+						</tr>
+						<tr>
+							<th>Dni:</th>
+							<td><?php echo $fila['Dni']; ?></td>
+						</tr>
+						<tr>
+							<th>Sueldo:</th>
+							<td><?php echo $fila['Sueldo']; ?></td>
+						</tr>
+						<tr>
+							<th>Funcion:</th>
+							<td><?php echo $fila['Funcion']; ?></td>
+						</tr>
 						<tr>
 							<th>Fecha Alta:</th>
-							<td><?php echo $personal->getFechaAlt(); ?></td>
+							<td><?php echo $fila['FK_IdEquipo']; ?></td>
 						</tr>
 					</table>
 
