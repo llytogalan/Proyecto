@@ -276,10 +276,12 @@
 						<input type="text" name="dorsal" id="dorsal" placeholder="Escribe el Dorsal"  />
 
 						<label for="posicion">Posicion</label><br>
-						<input type="radio" id="posicion" name="posicion" value="Portero" ><label>Portero</label><br>
-						<input type="radio" id="posicion" name="posicion" value="Defensa" ><label>Defensa</label><br>
-						<input type="radio" id="posicion" name="posicion" value="Mediocentro" ><label>Medicentro</label><br>
-						<input type="radio" id="posicion" name="posicion" value="Delantero" ><label>Delantero</label><br>
+						<?php $posiciones = array("Portero", "Defensa", "Mediocentro", "Delantero"); 
+							foreach ($posiciones as $posicion) { ?>
+								<input type="radio" id="posicion" name="posicion" value="<?php echo $posicion ?>" ><label><?php echo $posicion ?></label><br>
+ 						<?php
+							}
+						?>
 
 						<hr style="border-color:black;">
 

@@ -64,27 +64,22 @@
 	<hr style="border-color:black;">
 
 	<label for="division" required>Division*</label>
+	<?php $division = array(" ", "3", "Division de Honor", "1 Andaluza", "2 Andaluza");?>
 	<select name="division">
-		<option default> </option>
-		<option>3</option>
-		<option>Division de Honor</option>
-		<option>1 Andaluza</option>
-		<option>2 Andaluza</option>
+		<?php foreach ($division as $liga) {?>
+			<option><?php echo $liga ?></option>
+	<?php
+			}
+	?>
 	</select>
 
 	<label for="grupo">Grupo*</label>
 	<select name="grupo">
-		<option default> </option>
-		<option>1</option>
-		<option>2</option>
-		<option>3</option>
-		<option>4</option>
-		<option>5</option>
-		<option>6</option>
-		<option>7</option>
-		<option>8</option>
-		<option>9</option>
-		<option>10</option>
+		<?php for ($i=1;$i<11;$i++) {?>
+			<option><?php echo $i ?></option>
+	<?php
+			}
+	?>
 	</select>
 
 	<label><input type="checkbox" id="condiciones" value="condiciones" required >Aceptas nuestras politicas de privacidad</label><br>

@@ -200,13 +200,13 @@
 						<input type="text" name="sueldo" id="sueldo" placeholder="Introduce sueldo"  />
 
 						<label for="funcion">Funcion</label>
+						<?php $funciones = array(" ", "Utillero", "Fisioterapeuta", "Preparador", "Psicologo", "Director Deportivo");?>
 						<select name="funcion">
-							<option default> </option>
-							<option>Utillero</option>
-							<option>Fisioterapeuta</option>
-							<option>Preparador</option>
-							<option>Psicologo</option>
-							<option>Director Deportivo</option>
+							<?php foreach ($funciones as $funcion) {?>
+								<option><?php echo $funcion ?></option>
+							<?php
+								}
+							?>
 						</select>
 						
 						<input type="submit" name="anadirPersonal" value="Añadir Personal"/>
