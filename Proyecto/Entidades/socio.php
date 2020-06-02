@@ -143,13 +143,26 @@ require ('../crud/Conexion.php');
 			}
 		}
 
+		public function eliminarSocio(){
 
+			$model = new Conexion();
+  			$conexion = $model->conectar();
+  			$sql='DELETE FROM '.self::TABLA.' WHERE Dni = :dni';
+
+			$dni = $this->getDni();
+
+  			$consulta=$conexion->prepare($sql);
+  			$consulta->bindParam(":dni", $dni );
+
+  			if (!$consulta) {
+				return "Error al eliminar Socio";
+			} else {
+				$consulta->execute();
+				return "Eliminado con exito";
+			}
+
+  		}
 
 
 	}
-
-
-
-
-
 ?>

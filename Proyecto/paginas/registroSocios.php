@@ -47,6 +47,24 @@
 					<a href="./registroSocios.php"><button id="botonvolver">Volver a formulario</button></a>
 
 				<?php
+
+				}elseif (isset($_POST['eliminarSocio'])) {
+
+					$nombre=(isset($_POST['nombre']))?$_POST['nombre']:" ";
+					$dni=(isset($_POST['dni']))?$_POST['dni']:" ";
+					$cuota=(isset($_POST['cuota']))?$_POST['cuota']:" ";
+					$fk_equipo=(isset($_SESSION['idEquipo']))?$_SESSION['idEquipo']:" ";
+
+					$socio = new Socio($nombre, $dni, $cuota);
+					$socio->setFK_idEquipo($fk_equipo);
+
+				?>
+					<!-- Contenido Pagina cuando elimine socios -->
+					<h1><?php echo $socio->eliminarSocio()."<br>"; ?></h1>
+					<a href="./registroSocios.php"><button id="botonvolver">Volver a formulario</button></a>
+
+
+				<?php
 				}elseif (isset($_POST['modificarSocio'])) {
 
 					$nombre=(isset($_POST['nombre']))?$_POST['nombre']:" ";
@@ -197,6 +215,8 @@
 
 
 			    		<input type="submit" name="buscarSocio" value="Buscar Socio"/>
+
+			    		<input type="submit" name="eliminarSocio" value="Eliminar Socio"/>
 
 						<input type="reset" value="Reset"/>
 

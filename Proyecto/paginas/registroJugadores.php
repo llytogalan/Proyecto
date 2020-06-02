@@ -64,6 +64,21 @@
 					<a href="./registroJugadores.php"><button id="botonvolver">Volver a formulario</button></a>
 
 				<?php
+
+					}elseif (isset($_POST['eliminarJugador'])) {
+
+					$apodo=(isset($_POST['apodo']))?$_POST['apodo']:" ";
+					$dni=(isset($_POST['dni']))?$_POST['dni']:" ";
+
+					$jugador = new Jugador();
+					$jugador->setApodo($apodo);
+					$jugador->setDni($dni);
+				?>
+					<!-- Contenido Pagina cuando elimine jugadores -->
+					<h1><?php echo $jugador->eliminarJugador()."<br>"; ?></h1>
+					<a href="./registroJugadores.php"><button id="botonvolver">Volver a formulario</button></a>
+
+				<?php
 				}elseif (isset($_POST['modificarJugador'])) {
 
 					$nombre=(isset($_POST['nombre']))?$_POST['nombre']:" ";
@@ -304,6 +319,8 @@
 
 
 			    		<input type="submit" name="buscarJugador" value="Buscar Jugador"/>
+
+			    		<input type="submit" name="eliminarJugador" value="Eliminar Jugador"/>
 
 						<input type="reset" value="Reset"/>
 

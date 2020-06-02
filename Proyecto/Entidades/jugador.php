@@ -288,6 +288,28 @@
 
 		}
 
+		public function eliminarJugador(){
+
+			$model = new Conexion();
+  			$conexion = $model->conectar();
+  			$sql='DELETE FROM '.self::TABLA.' WHERE Apodo = :apodo AND Dni = :dni';
+
+  			$apodo = $this->getApodo();
+			$dni = $this->getDni();
+
+  			$consulta=$conexion->prepare($sql);
+  			$consulta->bindParam(":apodo", $apodo );
+  			$consulta->bindParam(":dni", $dni );
+
+  			if (!$consulta) {
+				return "Error al eliminar Jugador";
+			} else {
+				$consulta->execute();
+				return "Eliminado con exito";
+			}
+
+  		}
+
 
 	}
 ?>

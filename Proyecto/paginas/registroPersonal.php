@@ -47,6 +47,24 @@
 					<a href="./registroPersonal.php"><button id="botonvolver">Volver a formulario</button></a>
 
 				<?php
+
+				}elseif (isset($_POST['eliminarPersonal'])) {
+
+					$nombre=(isset($_POST['nombre']))?$_POST['nombre']:" ";
+					$dni=(isset($_POST['dni']))?$_POST['dni']:" ";
+					$sueldo=(isset($_POST['sueldo']))?$_POST['sueldo']:" ";
+					$funcion=(isset($_POST['funcion']))?$_POST['funcion']:" ";
+					$fk_equipo=(isset($_SESSION['idEquipo']))?$_SESSION['idEquipo']:" ";
+
+					$personal = new Personal($nombre, $dni, $sueldo, $funcion, $fk_equipo);
+
+				?>
+					<!-- Contenido Pagina cuando elimine Personal -->
+					<h1><?php echo $personal->eliminarPersonal()."<br>"; ?></h1>
+					<a href="./registroPersonal.php"><button id="botonvolver">Volver a formulario</button></a>
+
+				<?php
+
 				}elseif (isset($_POST['modificarPersonal'])) {
 
 					$nombre=(isset($_POST['nombre']))?$_POST['nombre']:" ";
@@ -216,6 +234,8 @@
 
 
 			    		<input type="submit" name="buscarPersonal" value="Buscar Personal"/>
+
+			    		<input type="submit" name="eliminarPersonal" value="Eliminar Personal"/>
 
 						<input type="reset" value="Reset"/>
 
